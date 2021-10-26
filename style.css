@@ -51,6 +51,8 @@ nav {
 img.header-logo {
     width: 90px;
     height: 90px;
+
+
 }
 #links{
     padding-right: 10px;
@@ -60,4 +62,7 @@ main {
 }
 .twitter-id{
     padding-left: 10px;
+}
+.header-items{
+    transition: all 0.3s;
 }
