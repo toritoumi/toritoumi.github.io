@@ -50,12 +50,37 @@ box.position.z = -500;
 
 scene.add(box);
 
+
+const raycaster = new THREE.Raycaster();
+const pointer = new THREE.Vector2();
+
+function onPointerMove( event ) {
+	pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+	pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+}
+
+function onClickBox(){
+    window.location.href = './about.html';
+}
+
+
+window.addEventListener('pointermove', onPointerMove);
 window.addEventListener('resize', onWindowResize,false);
+window.addEventListener('click', function () {
+    const intersects = raycaster.intersectObjects(scene.children,true);
+    if (intersects.length == 2) onClickBox();
+})
+
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+}
 
 const animate = function () {
-	requestAnimationFrame( animate );
     render();
 	renderer.render( scene, camera );
+    requestAnimationFrame( animate );
 }
 
 const render = function () {
@@ -64,12 +89,9 @@ const render = function () {
 
     box.rotation.x += 0.008;
     box.rotation.y += 0.008;
+
+    raycaster.setFromCamera( pointer, camera );
 }
 
-function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight );
-}
 
 animate();
