@@ -4,7 +4,7 @@ body {
 
 header {
     position: absolute;
-    height: 10vh;
+    height: 13vh;
     width: 100vw;
     display: flex;
 }
@@ -17,7 +17,7 @@ a {
 #title{
     vertical-align: middle;
     text-align: center;
-    line-height: 10vh;
+    line-height: 13vh;
     width: 20vw;
     font-size: 35px;
 }
